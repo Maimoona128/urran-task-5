@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urran Runway - Task 5 Interactive Dashboard</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f9;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 100%;
+      margin: auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+    h1 {
+      color: #2c3e50;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 10px;
+      margin-top: 0;
+    }
+    .card {
+      background: #fafafa;
+      border-left: 4px solid #3498db;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 0 8px 8px 0;
+    }
+    .card h3 {
+      margin-top: 0;
+      color: #2c3e50;
+    }
+    .form-group {
+      margin-bottom: 12px;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 5px;
+      font-size: 14px;
+      color: #4a5568;
+    }
+    input[type="text"], input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #cbd5e0;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    button {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      margin-top: 8px;
+    }
+    button:hover {
+      background: #2980b9;
+    }
+    .result {
+      margin-top: 12px;
+      padding: 10px 12px;
+      background-color: #e8f4f8;
+      border-radius: 6px;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+    .result-box3 {
+      background-color: #edf2f7;
+      font-weight: bold;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Task 5 - Web Development Internship</h1>
+
+    <!-- Task 1 -->
+    <div class="card">
+      <h3>1. Age to Days Converter</h3>
+      <div class="form-group">
+        <label>Enter your age (in years):</label>
+        <input type="number" id="t1-age" placeholder="e.g. 20">
+      </div>
+      <button onclick="runTask1()">Convert to Days</button>
+      <div id="t1-result" class="result">Result will appear here...</div>
+    </div>
+
+    <!-- Task 2 -->
+    <div class="card">
+      <h3>2. Hours to Seconds Converter</h3>
+      <div class="form-group">
+        <label>Enter hours:</label>
+        <input type="number" id="t2-hours" placeholder="e.g. 2">
+      </div>
+      <button onclick="runTask2()">Convert to Seconds</button>
+      <div id="t2-result" class="result">Result will appear here...</div>
+    </div>
+
+    <!-- Task 3 -->
+    <div class="card">
+      <h3>3. Find Next Number</h3>
+      
+      <strong>Scenario A (Array Search):</strong>
+      <p style="font-size: 13px; color: #666; margin: 4px 0 8px;">Array: [10, 20, 30, 40, 50]</p>
+      <div class="form-group">
+        <input type="number" id="t3-array-val" placeholder="Enter number from array (e.g. 30)">
+      </div>
+      <button onclick="runTask3A()">Find Next Array Item</button>
+      <div id="t3a-result" class="result">Result will appear here...</div>
+
+      <hr style="margin: 15px 0; border: none; border-top: 1px solid #e2e8f0;">
+
+      <strong>Scenario B (Single Value Input):</strong>
+      <div class="form-group" style="margin-top: 8px;">
+        <input type="text" id="t3-single-val" placeholder="Enter integer or float (e.g. 5 or 5.5)">
+      </div>
+      <button onclick="runTask3B()">Find Next Number</button>
+      <div id="t3b-result" class="result">Result will appear here...</div>
+    </div>
+
+    <!-- Task 4 -->
+    <div class="card">
+      <h3>4. Name Capitalizer</h3>
+      <div class="form-group">
+        <label>Enter your name (in lowercase):</label>
+        <input type="text" id="t4-name" placeholder="e.g. ali">
+      </div>
+      <button onclick="runTask4()">Capitalize Name</button>
+      <div id="t4-result" class="result">Result will appear here...</div>
+    </div>
+
+    <!-- Task 5 -->
+    <div class="card">
+      <h3>5. BMI Calculator</h3>
+      <div class="form-group">
+        <label>Weight (in kg):</label>
+        <input type="number" id="t5-weight" placeholder="e.g. 70">
+      </div>
+      <div class="form-group">
+        <label>Height (in meters):</label>
+        <input type="number" step="0.01" id="t5-height" placeholder="e.g. 1.75">
+      </div>
+      <button onclick="runTask5()">Calculate BMI</button>
+      <div id="t5-result" class="result">Result will appear here...</div>
+    </div>
+
+    <!-- Task 6 -->
+    <div class="card">
+      <h3>6. Random Array First & Last Element</h3>
+      <button onclick="runTask6()">Generate Array & Pick Elements</button>
+      <div id="t6-result" class="result">Click button to generate array...</div>
+    </div>
+
+    <!-- Task 7 -->
+    <div class="card" style="border-left-color: #2ecc71;">
+      <h3>7. Interactive 3-Textbox Addition (Event Handling)</h3>
+      <div class="form-group">
+        <label>First Text Box (Integer 1):</label>
+        <input type="text" id="box1" placeholder="Type integer 1...">
+      </div>
+      <div class="form-group">
+        <label>Second Text Box (Integer 2):</label>
+        <input type="text" id="box2" placeholder="Type integer 2...">
+      </div>
+      <div class="form-group">
+        <label>Result Text Box (Output):</label>
+        <input type="text" id="box3" class="result-box3" readonly placeholder="Result will show here">
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Task 1 Logic
+    function runTask1() {
+      const age = parseFloat(document.getElementById("t1-age").value);
+      const res = document.getElementById("t1-result");
+      if (isNaN(age) || age < 0) {
+        res.innerText = "Please enter a valid age.";
+      } else {
+        res.innerText = `You have lived approximately ${age * 365} days!`;
+      }
+    }
+
+    // Task 2 Logic
+    function runTask2() {
+      const hours = parseFloat(document.getElementById("t2-hours").value);
+      const res = document.getElementById("t2-result");
+      if (isNaN(hours) || hours < 0) {
+        res.innerText = "Please enter valid hours.";
+      } else {
+        res.innerText = `${hours} hour(s) is equal to ${hours * 3600} seconds.`;
+      }
+    }
+
+    // Task 3 Scenario A Logic
+    function runTask3A() {
+      const arr = [10, 20, 30, 40, 50];
+      const target = parseFloat(document.getElementById("t3-array-val").value);
+      const res = document.getElementById("t3a-result");
+      const index = arr.indexOf(target);
+
+      if (index === -1) {
+        res.innerText = "Number not found in the array [10, 20, 30, 40, 50].";
+      } else if (index === arr.length - 1) {
+        res.innerText = "No next element (this is the last item).";
+      } else {
+        res.innerText = `The element next to ${target} is ${arr[index + 1]}.`;
+      }
+    }
+
+    // Task 3 Scenario B Logic
+    function runTask3B() {
+      const val = document.getElementById("t3-single-val").value.trim();
+      const num = Number(val);
+      const res = document.getElementById("t3b-result");
+
+      if (val === "" || isNaN(num)) {
+        res.innerText = "Please enter a valid number.";
+      } else if (Number.isInteger(num)) {
+        res.innerText = `Input is Integer (${num}). Next number is: ${num + 1}`;
+      } else {
+        res.innerText = `Input is Float (${num}). Next number is: ${num + 1}`;
+      }
+    }
+
+    // Task 4 Logic
+    function runTask4() {
+      const name = document.getElementById("t4-name").value.trim().toLowerCase();
+      const res = document.getElementById("t4-result");
+      if (!name) {
+        res.innerText = "Please enter a name.";
+      } else {
+        const capitalized = name.charAt(0).toUpperCase() + name.slice(1);
+        res.innerText = `Formatted Name: ${capitalized}`;
+      }
+    }
+
+    // Task 5 Logic
+    function runTask5() {
+      const w = parseFloat(document.getElementById("t5-weight").value);
+      const h = parseFloat(document.getElementById("t5-height").value);
+      const res = document.getElementById("t5-result");
+
+      if (isNaN(w) || isNaN(h) || w <= 0 || h <= 0) {
+        res.innerText = "Please enter valid weight and height.";
+      } else {
+        const bmi = (w / (h * h)).toFixed(2);
+        res.innerText = `Your BMI is: ${bmi}`;
+      }
+    }
+
+    // Task 6 Logic
+    function runTask6() {
+      const length = Math.floor(Math.random() * 6) + 4; // 4 to 9 items
+      const arr = [];
+      for (let i = 0; i < length; i++) {
+        arr.push(Math.floor(Math.random() * 100));
+      }
+      const res = document.getElementById("t6-result");
+      res.innerText = `Generated Array: [${arr.join(", ")}]\n1st Element: ${arr[0]} | Last Element: ${arr[arr.length - 1]}`;
+    }
+
+    // Task 7 Event Listeners
+    const box1 = document.getElementById("box1");
+    const box2 = document.getElementById("box2");
+    const box3 = document.getElementById("box3");
+
+    box1.addEventListener("input", () => {
+      box3.value = "NaN";
+    });
+
+    box2.addEventListener("input", () => {
+      const val1 = parseInt(box1.value, 10);
+      const val2 = parseInt(box2.value, 10);
+
+      if (!isNaN(val1) && !isNaN(val2)) {
+        box3.value = val1 + val2;
+      } else {
+        box3.value = "NaN";
+      }
+    });
+  </script>
+
+</body>
+</html>
